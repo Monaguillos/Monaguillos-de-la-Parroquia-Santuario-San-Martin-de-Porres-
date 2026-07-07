@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Monaguillos de la Parroquia Santuario San Martín de Porres. Sitio oficial con calendario litúrgico, inscripción por WhatsApp y formulario, galería, mapa, música y contacto." />
+  <title>Monaguillos | Parroquia Santuario San Martín de Porres</title>
+  <style>
+    :root{--bg:#120c08;--text:#fffdf8;--muted:#eadfcd;--primary:#d7b86a;--secondary:#4a2f1a;--success:#7ba05b;--violet:#7a5ab3;--white:#f4efe6;--red:#c85a4a;--border:rgba(215,184,106,.18);--shadow:0 20px 60px rgba(0,0,0,.36);--radius:24px;--max:1180px}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);overflow-x:hidden;background:radial-gradient(circle at top, rgba(215,184,106,.18), transparent 28%),radial-gradient(circle at 18% 18%, rgba(74,47,26,.22), transparent 25%),linear-gradient(180deg,#1a110b 0%,var(--bg) 45%,#100b08 100%)}
+    a{color:inherit;text-decoration:none} img,video{max-width:100%;display:block}
+    .container{width:min(var(--max), calc(100% - 32px)); margin:0 auto}
+    .skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:16px;top:16px;z-index:10000;background:#fff;color:#000;padding:10px 14px;border-radius:12px}
+    .topbar{position:fixed; inset:0 0 auto 0; z-index:1000; backdrop-filter:blur(16px); background:rgba(20,13,9,.62); border-bottom:1px solid rgba(215,184,106,.12); transition:.25s ease}
+    .topbar.scrolled{background:rgba(20,13,9,.9)} .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:78px}
+    .brand{display:flex; align-items:center; gap:14px; font-weight:800; letter-spacing:.2px}
+    .brand-mark,.logo-fallback{width:58px;height:58px;border-radius:18px;flex:none;border:1px solid rgba(255,255,255,.14);box-shadow:0 12px 26px rgba(0,0,0,.2)}
+    .brand-mark{object-fit:cover;background:linear-gradient(135deg, rgba(74,47,26,.35), rgba(215,184,106,.22))}
+    .logo-fallback{display:none;place-items:center;background:linear-gradient(135deg,#6f8f55,#d7b86a)}
+    .logo-fallback svg{width:34px;height:34px;fill:#fff}
+    .brand span{display:block;line-height:1.1}.brand small{display:block;color:var(--muted);font-weight:600}
+    .menu{display:flex; gap:16px; flex-wrap:wrap; align-items:center; justify-content:flex-end}
+    .menu a{font-size:.95rem;color:var(--muted);padding:10px 12px;border-radius:999px;transition:.2s ease}.menu a:hover{background:rgba(255,255,255,.08); color:#fff}
+    .nav-cta{display:flex;gap:10px;align-items:center}
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:14px 18px; border-radius:999px; border:1px solid transparent; font-weight:700; transition:.25s ease; cursor:pointer; box-shadow:0 10px 24px rgba(0,0,0,.18)}
+    .btn:hover{transform:translateY(-2px)} .btn-primary{background:linear-gradient(135deg,var(--primary),#f2deb0); color:#2d1b10} .btn-secondary{background:rgba(255,255,255,.06); color:#fff; border-color:rgba(215,184,106,.28)} .btn-whatsapp{background:linear-gradient(135deg,#25d366,#128c7e); color:#fff}
+    .mobile-toggle{display:none}
+    .hero{position:relative; min-height:100svh; display:grid; align-items:center; padding:120px 0 70px; isolation:isolate}
+    .hero::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,4,3,.46), rgba(5,4,3,.78)), linear-gradient(135deg, rgba(74,47,26,.22), rgba(215,184,106,.12)); z-index:-3}
+    .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:center}
+    .eyebrow,.theme-chip,.legend-item{display:inline-flex; align-items:center; gap:8px}
+    .eyebrow{margin-bottom:16px; padding:9px 14px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(215,184,106,.16); color:#fff; font-weight:600; backdrop-filter:blur(12px)}
+    .eyebrow b{color:var(--primary)}
+    .theme-chip{padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(215,184,106,.14); color:#fff; font-size:.88rem; font-weight:700; margin-bottom:16px}
+    .theme-dot{width:10px; height:10px; border-radius:999px; background:var(--primary)}
+    h1{font-size:clamp(2.3rem, 4.8vw, 4.9rem); line-height:.95; margin:0 0 18px; letter-spacing:-.03em; font-family:Georgia,'Times New Roman',serif; text-wrap:balance}
+    .lead{font-size:clamp(1rem, 1.6vw, 1.18rem); line-height:1.7; color:var(--muted); max-width:60ch; margin:0 0 28px}
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:24px}
+    .stats{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:12px; max-width:760px}
+    .stat{background:rgba(255,255,255,.08); backdrop-filter:blur(16px); border:1px solid rgba(215,184,106,.14); border-radius:20px; padding:16px; box-shadow:var(--shadow)}
+    .stat strong{display:block; font-size:1.8rem; margin-bottom:6px}.stat span{color:var(--muted); font-size:.95rem}
+    .hero-card{background:rgba(20,13,9,.58); border:1px solid rgba(215,184,106,.16); border-radius:30px; padding:18px; box-shadow:var(--shadow); backdrop-filter:blur(18px)}
+    .hero-art{position:relative; border-radius:24px; overflow:hidden; aspect-ratio:4/5; background:radial-gradient(circle at 30% 20%, rgba(255,255,255,.18), transparent 25%),radial-gradient(circle at 70% 70%, rgba(215,184,106,.24), transparent 30%),linear-gradient(180deg, rgba(74,47,26,.22), rgba(215,184,106,.14)); border:1px solid rgba(255,255,255,.1); display:grid; place-items:center; padding:22px}
+    .hero-art::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 0 45%, rgba(0,0,0,.25) 100%)}
+    .hero-art-inner{position:relative; width:100%; height:100%; border-radius:22px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; text-align:center}
+    .hero-logo{width:132px;height:132px;border-radius:36px;background:linear-gradient(135deg, #6f8f55, #d7b86a); display:grid;place-items:center; box-shadow:0 18px 40px rgba(0,0,0,.28); border:1px solid rgba(255,255,255,.18); overflow:hidden}
+    .hero-logo img{width:100%;height:100%;object-fit:cover}
+    .hero-art h3{margin:0;font-size:1.3rem}.hero-art p{margin:0;color:#f4efe6;opacity:.92;line-height:1.7}
+    .chip{display:inline-flex; padding:8px 14px; border-radius:999px; background:rgba(0,0,0,.28); border:1px solid rgba(255,255,255,.12); color:#fff; font-weight:700}
+    .section{padding:78px 0}.section-title{font-size:clamp(1.6rem, 2.8vw, 2.6rem); margin:0 0 12px; font-family:Georgia,'Times New Roman',serif}.section-sub{margin:0 0 28px; color:var(--muted); line-height:1.7; max-width:72ch}
+    .grid-3,.grid-2{display:grid; gap:18px}.grid-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.grid-2{grid-template-columns:repeat(2, minmax(0, 1fr))}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05)); border:1px solid rgba(215,184,106,.12); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow)}
+    .card h3{margin:0 0 10px; font-size:1.12rem}.card p,.card li{color:var(--muted); line-height:1.7}
+    .icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;margin-bottom:14px; background:linear-gradient(135deg, rgba(74,47,26,.26), rgba(215,184,106,.22)); border:1px solid rgba(255,255,255,.1)}
+    .icon svg{width:26px;height:26px;fill:#fff}
+    .countdown{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px; margin-top:16px}.time-box{background:rgba(255,255,255,.08); border:1px solid rgba(215,184,106,.12); border-radius:22px; text-align:center; padding:18px 10px}.time-box strong{display:block; font-size:clamp(1.5rem, 4vw, 2.4rem); margin-bottom:4px}.time-box span{color:var(--muted); font-size:.9rem}.countdown-note{margin-top:14px; color:var(--muted); line-height:1.7}
+    .toolbar{display:flex; justify-content:space-between; gap:14px; align-items:center; flex-wrap:wrap; margin-bottom:18px}.month-nav{display:flex; gap:10px; align-items:center}.month-nav button{border:none; background:rgba(255,255,255,.08); color:#fff; border:1px solid rgba(215,184,106,.14); width:42px; height:42px; border-radius:14px; cursor:pointer}.month-name{font-weight:800}
+    .legend{display:flex; flex-wrap:wrap; gap:10px; margin:0 0 18px}.legend-item{padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(215,184,106,.12); color:#fff; font-size:.92rem}
+    .dot{width:12px;height:12px;border-radius:999px; display:inline-block}.dot.green{background:var(--success)}.dot.violet{background:var(--violet)}.dot.white{background:var(--white)}.dot.red{background:var(--red)}.dot.gold{background:var(--primary)}
+    .calendar{display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:10px}.dow,.day{background:rgba(255,255,255,.06); border:1px solid rgba(215,184,106,.12); border-radius:16px; min-height:70px; padding:10px; overflow:hidden}.dow{min-height:auto; text-align:center; font-weight:700; color:#f4eee1}.day{transition:.2s ease}.day:hover{transform:translateY(-2px); background:rgba(255,255,255,.09)}.day.muted{opacity:.35}.day.today{outline:2px solid rgba(215,184,106,.85)}.day .num{font-weight:800; margin-bottom:8px}
+    .badge{display:block; margin-top:6px; padding:5px 8px; border-radius:999px; font-size:.74rem; font-weight:700; line-height:1.2}.badge.meeting{background:rgba(215,184,106,.18); color:#fff7e3; border:1px solid rgba(215,184,106,.26)}.badge.red{background:rgba(201,110,73,.18); border:1px solid rgba(201,110,73,.3); color:#fff4ef}.badge.green{background:rgba(123,160,91,.18); border:1px solid rgba(123,160,91,.3); color:#eff9e9}.badge.violet{background:rgba(122,90,179,.18); border:1px solid rgba(122,90,179,.3); color:#f5efff}.badge.white{background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.2); color:#fff}.badge.gold{background:rgba(215,184,106,.18); border:1px solid rgba(215,184,106,.26); color:#fff7e3}
+    .gallery{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px}.gallery-card{min-height:220px; border-radius:24px; border:1px solid rgba(215,184,106,.14); background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)); box-shadow:var(--shadow); display:flex; align-items:flex-end; padding:22px; position:relative; overflow:hidden; cursor:pointer}.gallery-card::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(18,12,8,.2), rgba(18,12,8,.72))}.gallery-card > *{position:relative; z-index:1}.gallery-card h3{margin:0 0 8px; font-size:1.2rem}.gallery-card p{margin:0; color:var(--muted); max-width:34ch; line-height:1.6}
+    .map-wrap{overflow:hidden; border-radius:24px; border:1px solid rgba(255,255,255,.1); box-shadow:var(--shadow)} .map-wrap iframe{width:100%; min-height:360px; border:0}
+    .footer{padding:34px 0 110px; color:var(--muted); border-top:1px solid rgba(255,255,255,.08); margin-top:32px}.footer-grid{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:flex-start}.footer-grid > div{max-width:100%; line-height:1.6}
+    .floating{position:fixed; right:18px; bottom:18px; z-index:1200; display:grid; gap:10px}.float-btn{width:58px;height:58px;border-radius:18px; display:grid; place-items:center; border:none; cursor:pointer; box-shadow:0 18px 36px rgba(0,0,0,.3); color:#fff; transition:.2s ease}.float-btn:hover{transform:translateY(-2px)} .float-wa{background:linear-gradient(135deg,#25d366,#128c7e)} .float-top{background:linear-gradient(135deg,var(--primary),#f2deb0); color:#2d1b10} .float-music{background:linear-gradient(135deg,var(--secondary),#8b5d36)}
+    .music-panel{position:fixed; left:18px; bottom:18px; z-index:1200; max-width:min(420px, calc(100vw - 36px)); background:rgba(20,13,9,.92); backdrop-filter:blur(18px); border:1px solid rgba(215,184,106,.14); border-radius:22px; padding:14px; box-shadow:var(--shadow); display:none}.music-panel.open{display:block}.music-panel header{display:flex; justify-content:space-between; gap:10px; align-items:center; margin-bottom:12px}.music-panel h4{margin:0; font-size:1rem}.music-list{margin-top:10px; display:grid; gap:8px}.music-list button{text-align:left; border:none; border-radius:14px; padding:10px 12px; background:rgba(255,255,255,.06); color:#fff; cursor:pointer}.music-list button.active{outline:2px solid rgba(215,184,106,.75)}
+    .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.82); display:none; align-items:center; justify-content:center; z-index:2000; padding:24px}.lightbox.open{display:flex}.lightbox .box{max-width:min(980px,95vw); width:100%}.lightbox .close{float:right; width:48px; height:48px; border:none; border-radius:16px; background:rgba(215,184,106,.12); color:#fff; font-size:1.2rem; cursor:pointer; margin-bottom:10px}.lightbox img{width:100%; max-height:78vh; object-fit:contain; border-radius:24px; box-shadow:var(--shadow)}
+    .reveal{opacity:0; transform:translateY(22px); transition:.7s ease}.reveal.visible{opacity:1; transform:none}
+    .mobile-menu{display:none; position:absolute; left:16px; right:16px; top:80px; padding:14px; background:rgba(20,13,9,.96); border:1px solid rgba(215,184,106,.12); border-radius:22px; box-shadow:var(--shadow)} .mobile-menu a{display:block; padding:12px 10px; color:#fff; border-radius:12px} .mobile-menu a:hover{background:rgba(255,255,255,.08)}
+    .hint{color:var(--muted); line-height:1.7}
+    @media (max-width:980px){ .hero-grid,.grid-3,.grid-2,.gallery{grid-template-columns:1fr} .stats{grid-template-columns:1fr; max-width:none} .nav-cta,.menu{display:none} .mobile-toggle{display:inline-flex} .hero{padding-top:110px} .calendar{gap:8px} .dow,.day{min-height:58px; border-radius:14px} }
+    @media (max-width:620px){ .container{width:min(var(--max), calc(100% - 24px))} .nav{min-height:70px} .brand-mark,.logo-fallback{width:48px;height:48px;border-radius:16px} .brand small{display:none} h1{letter-spacing:-.04em} .countdown{grid-template-columns:repeat(2, minmax(0,1fr))} .calendar{grid-template-columns:repeat(7, minmax(0,1fr))} .dow,.day{min-height:48px; padding:8px} .day .num{font-size:.88rem} }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#inicio">Saltar al contenido</a>
+
+  <header class="topbar" id="topbar">
+    <div class="container nav">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <img id="logoImg" class="brand-mark" src="logo.png" alt="Logo de los Monaguillos" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='grid';" />
+        <div id="logoFallback" class="logo-fallback" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><path d="M32 4l6.4 13 14.4 2.1-10.4 10.1 2.4 14.3L32 36.8 19.6 43.5 22 29.2 11.6 19.1 26 17 32 4z"/><path d="M32 20l2.4 4.8 5.3.8-3.8 3.7.9 5.3L32 31.2 27.2 34l.9-5.3-3.8-3.7 5.3-.8L32 20z" fill="#120c08" opacity=".28"/></svg>
+        </div>
+        <span>Monaguillos <small>San Martín de Porres</small></span>
+      </a>
+      <nav class="menu" aria-label="Navegación principal">
+        <a href="#quienes">Quiénes somos</a>
+        <a href="#formacion">Formación</a>
+        <a href="#reuniones">Reuniones</a>
+        <a href="#calendario">Calendario</a>
+        <a href="#galeria">Galería</a>
+        <a href="#inscripcion">Inscripción</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-secondary" href="#inscripcion">Inscribirme</a>
+        <a class="btn btn-whatsapp" href="https://wa.me/51962642824?text=Hola%2C%20deseo%20informaci%C3%B3n%20para%20inscribirme%20al%20grupo%20de%20Monaguillos%20de%20la%20Parroquia%20Santuario%20San%20Mart%C3%ADn%20de%20Porres." target="_blank" rel="noopener">WhatsApp</a>
+        <button class="btn btn-secondary mobile-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+      </div>
+    </div>
+    <div class="container mobile-menu" id="mobileMenu" hidden>
+      <a href="#quienes">Quiénes somos</a>
+      <a href="#formacion">Formación</a>
+      <a href="#reuniones">Reuniones</a>
+      <a href="#calendario">Calendario</a>
+      <a href="#galeria">Galería</a>
+      <a href="#inscripcion">Inscripción</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">✦ <b>Parroquia Santuario San Martín de Porres</b> · Ministerio de servicio al altar</div>
+          <div class="theme-chip" id="themeChip"><span class="theme-dot"></span><span id="themeLabel">Año litúrgico</span></div>
+          <h1>Servimos con reverencia, alegría y amor al Señor</h1>
+          <p class="lead">Bienvenido al sitio oficial de los Monaguillos. Aquí encontrarás nuestra vida de fe, calendario litúrgico, galería, contacto y dos métodos de inscripción: primero por WhatsApp y luego por formulario oficial.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#inscripcion">Ver inscripción</a>
+            <a class="btn btn-secondary" href="#reuniones">Horario de reuniones</a>
+            <button class="btn btn-secondary" id="musicOpen">Música</button>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong id="yearsService">0</strong><span>Años de servicio</span></div>
+            <div class="stat"><strong id="membersCount">0</strong><span>Monaguillos formados</span></div>
+            <div class="stat"><strong id="meetingsCount">0</strong><span>Reuniones y celebraciones</span></div>
+          </div>
+        </div>
+        <aside class="hero-card reveal" aria-label="Presentación">
+          <div class="hero-art">
+            <div class="hero-art-inner">
+              <div class="hero-logo" aria-hidden="true">
+                <img id="logoHero" src="logo.png" alt="" onerror="this.style.display='none'" />
+              </div>
+              <div class="chip">Monaguillos · SMP</div>
+              <h3>Servicio, fe y comunidad</h3>
+              <p>Una presentación institucional elegante para acompañar la vida parroquial, con el modo Año Litúrgico y las fechas principales de la Iglesia.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="quienes" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">¿Quiénes somos?</h2>
+        <p class="section-sub reveal">Somos una comunidad de servicio litúrgico que forma niños y jóvenes en la fe, el respeto, la disciplina y el amor a Dios. Nuestra misión es acompañar las celebraciones eucarísticas con alegría y responsabilidad.</p>
+        <div class="grid-3">
+          <article class="card reveal"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2l2.5 5.1 5.6.8-4 3.9.9 5.6L12 14.7 7 17.4l.9-5.6-4-3.9 5.6-.8L12 2z"/></svg></div><h3>Misión</h3><p>Formar monaguillos con espíritu de servicio, amor a la Eucaristía y compromiso con la comunidad parroquial.</p></article>
+          <article class="card reveal"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 12l1.5-1.5L10 15V4h2v11l4.5-4.5L18 12l-6 6-8-6z"/></svg></div><h3>Visión</h3><p>Ser un grupo referente por su formación litúrgica, su testimonio cristiano y su acompañamiento constante a nuevos integrantes.</p></article>
+          <article class="card reveal"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zm1 4v5.2l4 2.4-1 1.7-5-3V7h2z"/></svg></div><h3>Valores</h3><p>Fe, respeto, puntualidad, fraternidad, disciplina, servicio, humildad y alegría para vivir la misión.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="formacion" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Nuestra formación</h2>
+        <p class="section-sub reveal">La preparación incluye contenidos bíblicos, litúrgicos y humanos para servir mejor en el altar y crecer como comunidad.</p>
+        <div class="grid-3">
+          <article class="card reveal"><h3>Formación litúrgica</h3><p>Aprendemos los signos, tiempos y respuestas de la misa para servir con precisión y reverencia.</p></article>
+          <article class="card reveal"><h3>Formación bíblica</h3><p>Fortalecemos la comprensión del Evangelio y la Palabra de Dios como guía de vida.</p></article>
+          <article class="card reveal"><h3>Formación espiritual</h3><p>Oración, retiro, convivencia y acompañamiento para cultivar una fe viva y alegre.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="reuniones" class="section">
+      <div class="container">
+        <div class="grid-2">
+          <div>
+            <h2 class="section-title reveal">Reuniones de monaguillos</h2>
+            <p class="section-sub reveal">Nos reunimos todos los domingos a las 5:00 p. m. para nuestra formación y organización del servicio. El grupo está dirigido principalmente a participantes de 7 a 20 años.</p>
+            <div class="card reveal">
+              <h3>Cuenta regresiva para la próxima reunión</h3>
+              <div class="countdown" aria-live="polite">
+                <div class="time-box"><strong id="cdDays">00</strong><span>Días</span></div>
+                <div class="time-box"><strong id="cdHours">00</strong><span>Horas</span></div>
+                <div class="time-box"><strong id="cdMinutes">00</strong><span>Minutos</span></div>
+                <div class="time-box"><strong id="cdSeconds">00</strong><span>Segundos</span></div>
+              </div>
+              <p class="countdown-note" id="cdMessage">Calculando la siguiente reunión...</p>
+            </div>
+          </div>
+          <div class="card reveal">
+            <h3>Horarios y datos clave</h3>
+            <ul>
+              <li>Domingos, 5:00 p. m.</li>
+              <li>Edad sugerida: 7 a 20 años</li>
+              <li>Atención y coordinación por WhatsApp</li>
+              <li>Servicio litúrgico, convivencia y formación</li>
+            </ul>
+            <a class="btn btn-primary" href="#inscripcion">Ir a inscripción</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="calendario" class="section">
+      <div class="container">
+        <div class="toolbar reveal">
+          <div>
+            <h2 class="section-title" style="margin-bottom:4px">Calendario litúrgico y parroquial</h2>
+            <p class="section-sub" style="margin:0">Celebra con el año litúrgico, con colores, íconos y recordatorios automáticos para las fechas principales.</p>
+          </div>
+          <div class="month-nav">
+            <button id="prevMonth" aria-label="Mes anterior">‹</button>
+            <div class="month-name" id="monthName"></div>
+            <button id="nextMonth" aria-label="Mes siguiente">›</button>
+          </div>
+        </div>
+        <div class="legend reveal">
+          <div class="legend-item"><span class="dot green"></span> Tiempo ordinario</div>
+          <div class="legend-item"><span class="dot violet"></span> Adviento y Cuaresma</div>
+          <div class="legend-item"><span class="dot white"></span> Navidad, Pascua y solemnidades</div>
+          <div class="legend-item"><span class="dot red"></span> Mártires, Pasión y Pentecostés</div>
+          <div class="legend-item"><span class="dot gold"></span> Recordatorio especial</div>
+        </div>
+        <div class="calendar reveal" id="calendar"></div>
+        <div class="card reveal" style="margin-top:16px">
+          <h3 style="margin-top:0">Próxima celebración</h3>
+          <p id="nextCelebration" style="margin-bottom:0">Cargando próxima celebración...</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Galería oficial</h2>
+        <p class="section-sub reveal">Nuestra galería oficial mostrará aquí las celebraciones, convivencias, procesiones y momentos de servicio del grupo.</p>
+        <div class="gallery">
+          <article class="gallery-card reveal"><div><h3>Próximamente fotos oficiales</h3><p>Este espacio quedará listo para tus fotografías reales del altar y la comunidad parroquial.</p></div></article>
+          <article class="gallery-card reveal"><div><h3>Momento de servicio</h3><p>Agrega imágenes de misa, convivencias, procesiones, retiros y actividades del grupo.</p></div></article>
+          <article class="gallery-card reveal"><div><h3>Vida comunitaria</h3><p>El diseño ya está preparado para que tus fotos se vean ordenadas y profesionales.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="inscripcion" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Inscripción</h2>
+        <p class="section-sub reveal">Inscripción mediante WhatsApp o mediante formulario oficial.</p>
+        <div class="grid-2">
+          <div class="card reveal">
+            <h3>Inscripción mediante WhatsApp</h3>
+            <p><b>Esmeralda</b><br />+51 962 642 824</p>
+            <a class="btn btn-whatsapp" target="_blank" rel="noopener" href="https://wa.me/51962642824?text=Hola%2C%20deseo%20informaci%C3%B3n%20para%20inscribirme%20al%20grupo%20de%20Monaguillos%20de%20la%20Parroquia%20Santuario%20San%20Mart%C3%ADn%20de%20Porres.">Escribir a Esmeralda</a>
+            <div style="height:12px"></div>
+            <p><b>Ricardo</b><br />+51 981 334 826</p>
+            <a class="btn btn-whatsapp" target="_blank" rel="noopener" href="https://wa.me/51981334826?text=Hola%2C%20deseo%20informaci%C3%B3n%20para%20inscribirme%20al%20grupo%20de%20Monaguillos%20de%20la%20Parroquia%20Santuario%20San%20Mart%C3%ADn%20de%20Porres.">Escribir a Ricardo</a>
+          </div>
+          <div class="card reveal">
+            <h3>Inscripción mediante formulario</h3>
+            <p class="hint">Completa el formulario oficial de Google Forms para dejar tus datos de inscripción.</p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px">
+              <a class="btn btn-primary" href="https://forms.gle/BUZ9Pn9LhVUzT68a8" target="_blank" rel="noopener">Abrir formulario</a>
+            </div>
+            <div style="border-radius:24px; overflow:hidden; border:1px solid rgba(215,184,106,.16); background:rgba(255,255,255,.04); min-height:740px">
+              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScdSxcy12olGC7LFnAX6G4RqERFtsYfbbnIR9ZdaQ65pYoQ_A/viewform?embedded=true" title="Formulario de inscripción de monaguillos" style="width:100%; height:740px; border:0; display:block; background:#fff;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="section">
+      <div class="container">
+        <div class="grid-2">
+          <div class="card reveal">
+            <h2 class="section-title" style="margin-top:0">Ubicación de la parroquia</h2>
+            <p class="section-sub" style="margin-top:0">Ubicación de la parroquia y acceso directo a Google Maps.</p>
+            <div class="map-wrap">
+              <iframe src="https://www.google.com/maps?q=Parroquia%20Santuario%20San%20Mart%C3%ADn%20de%20Porres%20Lima%20Per%C3%BA&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de la parroquia"></iframe>
+            </div>
+          </div>
+          <div class="card reveal">
+            <h2 class="section-title" style="margin-top:0">Contacto rápido</h2>
+            <p class="section-sub" style="margin-top:0">Comparte esta página con otras familias que deseen conocer el grupo de monaguillos.</p>
+            <div style="display:grid; gap:12px">
+              <a class="btn btn-whatsapp" target="_blank" rel="noopener" href="https://wa.me/51962642824?text=Hola%2C%20deseo%20informaci%C3%B3n%20para%20inscribirme%20al%20grupo%20de%20Monaguillos%20de%20la%20Parroquia%20Santuario%20San%20Mart%C3%ADn%20de%20Porres.">Escribir a Esmeralda</a>
+              <a class="btn btn-whatsapp" target="_blank" rel="noopener" href="https://wa.me/51981334826?text=Hola%2C%20deseo%20informaci%C3%B3n%20para%20inscribirme%20al%20grupo%20de%20Monaguillos%20de%20la%20Parroquia%20Santuario%20San%20Mart%C3%ADn%20de%20Porres.">Escribir a Ricardo</a>
+              <a class="btn btn-secondary" href="#inicio">Volver al inicio</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div><strong style="color:#fff">Monaguillos · Parroquia Santuario San Martín de Porres</strong><div>Reunión todos los domingos a las 5:00 p. m. · Edad sugerida 7 a 20 años</div></div>
+        <div>Monaguillos de la Parroquia Santuario San Martín de Porres.</div>
+      </div>
+    </footer>
+  </main>
+
+  <div class="floating" aria-label="Acciones flotantes">
+    <a class="float-btn float-wa" href="https://wa.me/51962642824?text=Hola%2C%20deseo%20informaci%C3%B3n%20para%20inscribirme%20al%20grupo%20de%20Monaguillos%20de%20la%20Parroquia%20Santuario%20San%20Mart%C3%ADn%20de%20Porres." target="_blank" rel="noopener" aria-label="WhatsApp de Esmeralda">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.5 0 .2 5.2.2 11.8c0 2.1.6 4.2 1.7 6L0 24l6.4-1.8a11.7 11.7 0 0 0 5.7 1.4h0c6.6 0 11.9-5.2 11.9-11.8 0-3.2-1.3-6.2-3.5-8.3ZM12.1 21.7a9.8 9.8 0 0 1-5.0-1.3l-.4-.2-3.8 1.1 1-3.7-.3-.4a9.8 9.8 0 1 1 8.5 4.5Zm5.7-7.5c-.3-.2-1.6-.8-1.8-.9s-.4-.2-.6.2-.7.9-.9 1.1-.3.2-.6.1a8 8 0 0 1-2.4-1.5 8.8 8.8 0 0 1-1.6-2c-.2-.3 0-.5.1-.7l.4-.4c.1-.1.2-.3.3-.5s0-.3-.1-.5c-.1-.2-.6-1.5-.8-2.1-.2-.6-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3s-1 1-1 2.4 1 2.7 1.1 2.9c.1.2 2.1 3.2 5.1 4.5.7.3 1.2.5 1.6.6.7.2 1.4.2 1.9.1.6-.1 1.6-.7 1.8-1.4.2-.7.2-1.3.1-1.4-.1-.1-.3-.2-.6-.4Z"/></svg>
+    </a>
+    <button class="float-btn float-music" id="musicOpen2" aria-label="Abrir música">♪</button>
+    <a class="float-btn float-top" href="#inicio" aria-label="Volver arriba">↑</a>
+  </div>
+
+  <div class="music-panel" id="musicPanel" aria-label="Música">
+    <header>
+      <h4>Música</h4>
+      <button class="btn btn-secondary" id="musicClose" style="padding:10px 12px">Cerrar</button>
+    </header>
+    <div class="music-list" id="musicList"></div>
+    <small style="display:block;margin-top:10px;color:var(--muted)">Tus audios se reproducen desde los archivos del repositorio: musica1.mp3, musica2.mp3, musica3.mp3 y musica4.mp3.</small>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="box">
+      <button class="close" id="closeLightbox" aria-label="Cerrar">×</button>
+      <img id="lightboxImg" alt="Vista ampliada" />
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const topbar = document.getElementById('topbar');
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const revealEls = document.querySelectorAll('.reveal');
+      const yearsService = document.getElementById('yearsService');
+      const membersCount = document.getElementById('membersCount');
+      const meetingsCount = document.getElementById('meetingsCount');
+      const cdDays = document.getElementById('cdDays');
+      const cdHours = document.getElementById('cdHours');
+      const cdMinutes = document.getElementById('cdMinutes');
+      const cdSeconds = document.getElementById('cdSeconds');
+      const cdMessage = document.getElementById('cdMessage');
+      const nextCelebration = document.getElementById('nextCelebration');
+      const calendarEl = document.getElementById('calendar');
+      const monthNameEl = document.getElementById('monthName');
+      const prevMonth = document.getElementById('prevMonth');
+      const nextMonth = document.getElementById('nextMonth');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const closeLightbox = document.getElementById('closeLightbox');
+      const musicPanel = document.getElementById('musicPanel');
+      const musicOpen = document.getElementById('musicOpen');
+      const musicOpen2 = document.getElementById('musicOpen2');
+      const musicClose = document.getElementById('musicClose');
+      const musicList = document.getElementById('musicList');
+      const themeLabel = document.getElementById('themeLabel');
+      const themeDot = document.querySelector('.theme-dot');
+      const themeChip = document.getElementById('themeChip');
+      const floatTop = document.querySelector('.float-top');
+
+      if (topbar) window.addEventListener('scroll', () => topbar.classList.toggle('scrolled', window.scrollY > 8));
+
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+          const open = mobileMenu.hasAttribute('hidden');
+          if (open) mobileMenu.removeAttribute('hidden'); else mobileMenu.setAttribute('hidden', '');
+          menuToggle.setAttribute('aria-expanded', String(open));
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          mobileMenu.setAttribute('hidden', '');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }));
+      }
+
+      const io = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), {threshold: 0.14});
+      revealEls.forEach(el => io.observe(el));
+
+      function animateCount(el, end, duration = 1600){
+        if (!el) return;
+        const t0 = performance.now();
+        const step = (t) => {
+          const p = Math.min((t - t0) / duration, 1);
+          el.textContent = Math.floor(end * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
+      animateCount(yearsService, 18);
+      animateCount(membersCount, 240);
+      animateCount(meetingsCount, 720);
+
+      function nextSunday5pm(now = new Date()){
+        const target = new Date(now);
+        const day = target.getDay();
+        let diffDays = (7 - day) % 7;
+        target.setHours(17,0,0,0);
+        if (diffDays === 0 && now >= target) diffDays = 7;
+        target.setDate(target.getDate() + diffDays);
+        return target;
+      }
+      function updateCountdown(){
+        if (!cdDays || !cdHours || !cdMinutes || !cdSeconds || !cdMessage) return;
+        const now = new Date();
+        const target = nextSunday5pm(now);
+        const diff = target - now;
+        cdDays.textContent = String(Math.max(0, Math.floor(diff / 86400000))).padStart(2, '0');
+        cdHours.textContent = String(Math.max(0, Math.floor((diff / 3600000) % 24))).padStart(2, '0');
+        cdMinutes.textContent = String(Math.max(0, Math.floor((diff / 60000) % 60))).padStart(2, '0');
+        cdSeconds.textContent = String(Math.max(0, Math.floor((diff / 1000) % 60))).padStart(2, '0');
+        cdMessage.textContent = 'Reunión de monaguillos todos los domingos a las 5:00 p. m.';
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      function easterDate(y){
+        const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),month=Math.floor((h+l-7*m+114)/31)-1,day=((h+l-7*m+114)%31)+1;
+        return new Date(y,month,day);
+      }
+      const addDays=(d,n)=>new Date(d.getTime()+n*86400000);
+      function firstSundayOfAdvent(y){ const christmas=new Date(y,11,25); const start=new Date(christmas); start.setDate(christmas.getDate()-28); while(start.getDay()!==0) start.setDate(start.getDate()+1); return start; }
+      function baptismOfLord(y){ const jan6=new Date(y,0,6); const s=new Date(jan6); do { s.setDate(s.getDate()+1); } while(s.getDay()!==0); return s; }
+      const holyWeek = y => ({ ash:addDays(easterDate(y),-46), palm:addDays(easterDate(y),-7), thu:addDays(easterDate(y),-3), fri:addDays(easterDate(y),-2), sat:addDays(easterDate(y),-1), easter:easterDate(y), pent:addDays(easterDate(y),49), trinity:addDays(easterDate(y),56), corpus:addDays(easterDate(y),60), sacred:addDays(easterDate(y),68), christ:(()=>{ const d=new Date(y,10,23); while(d.getDay()!==0) d.setDate(d.getDate()+1); return d; })() });
+
+      function liturgicalSeason(date){
+        const y=date.getFullYear(), hw=holyWeek(y), advent=firstSundayOfAdvent(y), baptism=baptismOfLord(y), christmasStart=new Date(y,11,25), christmasEnd=baptism;
+        if(date>=advent && date<christmasStart) return {season:'Adviento', color:'violet'};
+        if((date>=christmasStart && date<=christmasEnd) || (date.getMonth()===11 && date.getDate()===25)) return {season:'Navidad', color:'white'};
+        if(date>=hw.ash && date<hw.thu) return {season:'Cuaresma', color:'violet'};
+        if(date>=hw.thu && date<=hw.sat) return {season:'Triduo Pascual', color:'red'};
+        if(date>=hw.easter && date<=hw.pent) return {season:'Pascua', color:'white'};
+        return {season:'Tiempo ordinario', color:'green'};
+      }
+
+      function applyLiturgicalTheme(){
+        const c=liturgicalSeason(new Date()), palette={green:{primary:'#7ba05b',secondary:'#2e3d24',accent:'#eef7e6',border:'rgba(123,160,91,.24)'},violet:{primary:'#7a5ab3',secondary:'#35264f',accent:'#f2ecff',border:'rgba(122,90,179,.24)'},white:{primary:'#f4efe6',secondary:'#8d7860',accent:'#ffffff',border:'rgba(244,239,230,.24)'},red:{primary:'#c85a4a',secondary:'#4d251f',accent:'#fff1ee',border:'rgba(200,90,74,.24)'}}[c.color];
+        const root=document.documentElement;
+        root.style.setProperty('--primary', palette.primary);
+        root.style.setProperty('--secondary', palette.secondary);
+        root.style.setProperty('--accent', palette.accent);
+        root.style.setProperty('--border', palette.border);
+        if(themeLabel) themeLabel.textContent=c.season;
+        if(themeDot) themeDot.style.background=palette.primary;
+        if(themeChip) themeChip.style.borderColor=palette.border;
+        if(floatTop){
+          floatTop.style.background=`linear-gradient(135deg, ${palette.primary}, #f2deb0)`;
+          floatTop.style.color='#2d1b10';
+        }
+      }
+      applyLiturgicalTheme();
+
+      function eventCatalog(y){
+        const hw=holyWeek(y), ad=firstSundayOfAdvent(y), bap=baptismOfLord(y);
+        const fixed=[
+          {date:new Date(y,0,1), title:'Santa María Madre de Dios', icon:'👑', color:'white'},
+          {date:bap, title:'Bautismo del Señor', icon:'🕊️', color:'white'},
+          {date:new Date(y,1,2), title:'Presentación del Señor', icon:'✨', color:'white'},
+          {date:new Date(y,2,19), title:'San José', icon:'🛠️', color:'white'},
+          {date:new Date(y,2,25), title:'Anunciación del Señor', icon:'🌸', color:'white'},
+          {date:new Date(y,4,1), title:'San José Obrero', icon:'🛠️', color:'white'},
+          {date:new Date(y,5,29), title:'San Pedro y San Pablo', icon:'🔴', color:'red'},
+          {date:new Date(y,6,19), title:'Kermes parroquial', icon:'🎉', color:'gold'},
+          {date:new Date(y,7,15), title:'Asunción de la Virgen María', icon:'👑', color:'white'},
+          {date:new Date(y,10,1), title:'Todos los Santos', icon:'✨', color:'white'},
+          {date:new Date(y,10,2), title:'Fieles Difuntos', icon:'🕯️', color:'violet'},
+          {date:new Date(y,10,3), title:'San Martín de Porres', icon:'⛪', color:'gold'},
+          {date:new Date(y,11,8), title:'Inmaculada Concepción', icon:'🌼', color:'white'},
+          {date:new Date(y,11,25), title:'Navidad del Señor', icon:'🎄', color:'white'}
+        ];
+        const movable=[
+          {date:hw.ash, title:'Miércoles de Ceniza', icon:'✝', color:'violet'},
+          {date:hw.palm, title:'Domingo de Ramos', icon:'🌿', color:'red'},
+          {date:hw.thu, title:'Jueves Santo', icon:'⛪', color:'white'},
+          {date:hw.fri, title:'Viernes Santo', icon:'✝', color:'red'},
+          {date:hw.sat, title:'Sábado Santo', icon:'🕯️', color:'violet'},
+          {date:hw.easter, title:'Domingo de Pascua', icon:'✨', color:'white'},
+          {date:addDays(hw.easter,7), title:'Divina Misericordia', icon:'🤍', color:'white'},
+          {date:hw.pent, title:'Pentecostés', icon:'🕊️', color:'red'},
+          {date:hw.trinity, title:'Santísima Trinidad', icon:'✝', color:'white'},
+          {date:hw.corpus, title:'Corpus Christi', icon:'👑', color:'white'},
+          {date:hw.sacred, title:'Sagrado Corazón de Jesús', icon:'❤️', color:'red'},
+          {date:hw.christ, title:'Cristo Rey del Universo', icon:'👑', color:'white'},
+          {date:ad, title:'Primer Domingo de Adviento', icon:'🕯️', color:'violet'}
+        ];
+        return [...fixed, ...movable].filter(e=>e.date.getFullYear()===y).map(e=>({...e, key:`${e.date.getMonth()}-${e.date.getDate()}`}));
+      }
+
+      let viewDate=new Date();
+      const weekdays=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+      function renderCalendar(date){
+        if(!calendarEl||!monthNameEl) return;
+        const y=date.getFullYear(), m=date.getMonth(), events=eventCatalog(y);
+        monthNameEl.textContent=date.toLocaleDateString('es-PE',{month:'long', year:'numeric'});
+        calendarEl.innerHTML='';
+        weekdays.forEach(d=>{ const el=document.createElement('div'); el.className='dow'; el.textContent=d; calendarEl.appendChild(el); });
+        const startDay=new Date(y,m,1).getDay(), daysInMonth=new Date(y,m+1,0).getDate(), prevDays=new Date(y,m,0).getDate(), today=new Date();
+        for(let i=0;i<42;i++){
+          const cell=document.createElement('div'); cell.className='day'; let dayNum, muted=false;
+          if(i<startDay){ dayNum=prevDays-startDay+1+i; muted=true; }
+          else if(i>=startDay+daysInMonth){ dayNum=i-(startDay+daysInMonth)+1; muted=true; }
+          else { dayNum=i-startDay+1; if(dayNum===today.getDate() && m===today.getMonth() && y===today.getFullYear()) cell.classList.add('today'); }
+          cell.innerHTML=`<div class="num">${dayNum}</div>`;
+          if(!muted){
+            const current=new Date(y,m,dayNum), season=liturgicalSeason(current), b=document.createElement('span');
+            b.className=`badge ${season.color}`; b.textContent=season.season; cell.appendChild(b);
+            if(current.getDay()===0){ const ev=document.createElement('span'); ev.className='badge meeting'; ev.textContent='Reunión 5:00 p. m.'; cell.appendChild(ev); }
+            events.filter(e=>e.key===`${m}-${dayNum}`).forEach(e=>{ const ev=document.createElement('span'); ev.className=`badge ${e.color}`; ev.textContent=`${e.icon} ${e.title}`; cell.appendChild(ev); });
+          } else cell.classList.add('muted');
+          calendarEl.appendChild(cell);
+        }
+        updateNextCelebration(events);
+      }
+      function updateNextCelebration(events){
+        if(!nextCelebration) return;
+        const now=new Date(), todayStart=new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+        const future=[...events].map(e=>({...e, time:e.date.getTime()})).filter(e=>e.time>=todayStart).sort((a,b)=>a.time-b.time);
+        if(!future.length){ nextCelebration.textContent='No hay celebraciones próximas cargadas para este año.'; return; }
+        const next=future[0], days=Math.max(0, Math.floor((next.time-now.getTime())/86400000));
+        nextCelebration.textContent=`Próxima celebración: ${next.icon} ${next.title} — ${next.date.toLocaleDateString('es-PE',{day:'2-digit', month:'long'})} · faltan ${days} días.`;
+      }
+      renderCalendar(viewDate);
+      if(prevMonth) prevMonth.addEventListener('click', ()=>{ viewDate=new Date(viewDate.getFullYear(), viewDate.getMonth()-1, 1); renderCalendar(viewDate); });
+      if(nextMonth) nextMonth.addEventListener('click', ()=>{ viewDate=new Date(viewDate.getFullYear(), viewDate.getMonth()+1, 1); renderCalendar(viewDate); });
+
+      const tracks=[
+        {name:'La Fila - Hakuna', src:'musica1.mp3'},
+        {name:'Huracán - Hakuna', src:'musica2.mp3'},
+        {name:'Hasta la locura - Banda Huellas', src:'musica3.mp3'},
+        {name:'Para quién soy yo - Hakuna Group', src:'musica4.mp3'}
+      ];
+      function renderTracks(){
+        if(!musicList) return;
+        musicList.innerHTML='';
+        tracks.forEach((t,i)=>{
+          const btn=document.createElement('button');
+          btn.textContent=t.name;
+          btn.addEventListener('click', ()=>{ playTrack(t.src); [...musicList.children].forEach(c=>c.classList.remove('active')); btn.classList.add('active'); });
+          if(i===0) btn.classList.add('active');
+          musicList.appendChild(btn);
+        });
+      }
+      const audio = new Audio();
+      audio.preload = 'none';
+      audio.controls = true;
+      audio.style.width = '100%';
+      const musicPanelHeader = document.querySelector('.music-panel header');
+      if (musicPanelHeader && !musicPanelHeader.contains(audio)) musicPanelHeader.insertAdjacentElement('afterend', audio);
+      function playTrack(src){ audio.src = src; audio.load(); audio.play().catch(()=>{}); }
+      renderTracks();
+      playTrack(tracks[0].src);
+      const openMusic=()=>{ if(musicPanel) musicPanel.classList.add('open'); };
+      if(musicOpen) musicOpen.addEventListener('click', openMusic);
+      if(musicOpen2) musicOpen2.addEventListener('click', openMusic);
+      if(musicClose) musicClose.addEventListener('click', ()=> musicPanel.classList.remove('open'));
+
+      document.querySelectorAll('.gallery-card').forEach(card=>{
+        card.addEventListener('click', ()=>{
+          if(!lightbox||!lightboxImg) return;
+          lightboxImg.src='';
+          lightboxImg.alt='Galería oficial';
+          lightbox.classList.add('open');
+          lightbox.setAttribute('aria-hidden','false');
+        });
+      });
+      function closeLb(){ if(!lightbox) return; lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden','true'); }
+      if(closeLightbox) closeLightbox.addEventListener('click', closeLb);
+      if(lightbox) lightbox.addEventListener('click', e=>{ if(e.target===lightbox) closeLb(); });
+      window.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeLb(); if(musicPanel) musicPanel.classList.remove('open'); } });
+    });
+  </script>
+</body>
+</html>
